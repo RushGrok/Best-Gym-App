@@ -70,7 +70,9 @@ struct ExerciseDetailView: View {
                     HStack {
                         Image(systemName: "play.rectangle.fill")
                             .font(.title3)
-                        Text("Watch Proper Form Video")
+                        Text(exercise.youtubeVideoID != nil 
+                             ? "Watch Proper Form Video" 
+                             : "Search YouTube for Form")
                             .font(.headline)
                         Spacer()
                         Image(systemName: "arrow.up.right")
@@ -98,11 +100,16 @@ struct ExerciseDetailView: View {
     }
 
     private func launchVideo() {
-        // For now we use a smart YouTube search as fallback.
-        // Next step: add real curated youtubeVideoID per exercise.
-        let query = exercise.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        if let url = URL(string: "https://www.youtube.com/results?search_query=\(query)+proper+form") {
+        if let videoID = exercise.youtubeVideoID,
+           let url = URL(string: "https://www.youtube.com/watch?v=\(videoID)") {
+            // Best case: direct link to our curated high-quality video
             openURL(url)
+        } else {
+            // Fallback: smart YouTube search
+            let query = exercise.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+            if let url = URL(string: "https://www.youtube.com/results?search_query=\(query)+proper+form") {
+                openURL(url)
+            }
         }
     }
 

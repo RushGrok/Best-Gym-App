@@ -1,4 +1,6 @@
 import SwiftUI
+import SwiftData
+import Combine
 
 struct WorkoutSessionView: View {
     let suggestedWorkout: SuggestedWorkout

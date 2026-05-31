@@ -4,15 +4,26 @@ import SwiftData
 // MARK: - Enums
 
 enum MuscleGroup: String, Codable, CaseIterable, Identifiable {
+    // Upper body
     case chest = "Chest"
     case back = "Back"
     case shoulders = "Shoulders"
+    case rearDelts = "Rear Delts"
+    case traps = "Traps"
     case biceps = "Biceps"
     case triceps = "Triceps"
+    case forearms = "Forearms"
+
+    // Lower body
     case quads = "Quads"
     case hamstrings = "Hamstrings"
     case glutes = "Glutes"
     case calves = "Calves"
+    case adductors = "Adductors"
+    case abductors = "Abductors"
+    case legs = "Legs"
+
+    // Other / general
     case core = "Core"
     case fullBody = "Full Body"
     case cardio = "Cardio"
@@ -55,6 +66,10 @@ struct Exercise: Identifiable, Codable, Hashable {
     let repRange: String          // e.g. "8-12", "30s", "45-60s"
     let restSeconds: Int          // recommended rest between sets
 
+    /// YouTube video ID for proper form demonstration (e.g. "gRVjAtPip0Y").
+    /// When present, the detail view will link directly to this video.
+    let youtubeVideoID: String?
+
     init(
         name: String,
         muscleGroups: [MuscleGroup],
@@ -63,7 +78,8 @@ struct Exercise: Identifiable, Codable, Hashable {
         instructions: String = "",
         defaultSets: Int = 3,
         repRange: String = "8-12",
-        restSeconds: Int = 60
+        restSeconds: Int = 60,
+        youtubeVideoID: String? = nil
     ) {
         self.id = UUID()
         self.name = name
@@ -74,6 +90,7 @@ struct Exercise: Identifiable, Codable, Hashable {
         self.defaultSets = defaultSets
         self.repRange = repRange
         self.restSeconds = restSeconds
+        self.youtubeVideoID = youtubeVideoID
     }
 }
 

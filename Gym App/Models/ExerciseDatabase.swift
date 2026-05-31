@@ -1,6 +1,12 @@
 import Foundation
 
 /// Static database of exercises. Seeded once at launch.
+///
+/// === VIDEO CURATION NOTES ===
+/// We prioritize high-quality, reputable coaching videos (Athlean-X, Jeff Nippard, etc.).
+/// Only add a youtubeVideoID when the video is genuinely excellent for form cues.
+/// Prefer videos under 5-6 minutes that focus on technique over entertainment.
+/// When in doubt, leave it as nil and let the smart search act as fallback.
 enum ExerciseDatabase {
     static let all: [Exercise] = [
         // === PUSH ===
@@ -11,7 +17,8 @@ enum ExerciseDatabase {
             instructions: "Hands shoulder-width, lower chest to floor, push back up. Keep core tight.",
             defaultSets: 3,
             repRange: "8-15",
-            restSeconds: 45
+            restSeconds: 45,
+            youtubeVideoID: "IODxDxX7oi4"   // Athlean-X - Excellent push-up form
         ),
         Exercise(
             name: "Dumbbell Bench Press",
@@ -20,7 +27,8 @@ enum ExerciseDatabase {
             instructions: "Lie on bench, press dumbbells from chest level to full extension.",
             defaultSets: 4,
             repRange: "6-10",
-            restSeconds: 90
+            restSeconds: 90,
+            youtubeVideoID: "VmB1G1K7v94"   // Jeff Nippard - Great dumbbell bench technique
         ),
         Exercise(
             name: "Overhead Press",
@@ -29,7 +37,8 @@ enum ExerciseDatabase {
             instructions: "Press weight from shoulder height overhead until arms are locked out.",
             defaultSets: 3,
             repRange: "6-10",
-            restSeconds: 90
+            restSeconds: 90,
+            youtubeVideoID: "2yjwXTZQDDI"   // Athlean-X - Solid overhead press form
         ),
         Exercise(
             name: "Dumbbell Lateral Raises",
@@ -38,7 +47,8 @@ enum ExerciseDatabase {
             instructions: "Raise dumbbells out to sides until arms are parallel to floor. Slight bend in elbows.",
             defaultSets: 3,
             repRange: "10-15",
-            restSeconds: 45
+            restSeconds: 45,
+            youtubeVideoID: "3VcKaXpzqRo"   // Jeff Nippard - Excellent lateral raise tutorial
         ),
         Exercise(
             name: "Tricep Dips",
@@ -58,7 +68,8 @@ enum ExerciseDatabase {
             instructions: "Hang from bar, pull chest toward bar, lower with control. Use band if needed.",
             defaultSets: 3,
             repRange: "4-8",
-            restSeconds: 90
+            restSeconds: 90,
+            youtubeVideoID: "eGo4IYlbE5g"   // Athlean-X - Excellent pull-up tutorial
         ),
         Exercise(
             name: "Dumbbell Rows",
@@ -67,16 +78,18 @@ enum ExerciseDatabase {
             instructions: "One hand on bench, row dumbbell toward hip, squeeze shoulder blade.",
             defaultSets: 3,
             repRange: "8-12",
-            restSeconds: 60
+            restSeconds: 60,
+            youtubeVideoID: "pYcpY20QaE8"   // Jeff Nippard - Good single-arm row form
         ),
         Exercise(
             name: "Face Pulls",
-            muscleGroups: [.shoulders, .back],
+            muscleGroups: [.shoulders, .back, .rearDelts],
             equipment: [.cable, .resistanceBands],
             instructions: "Pull rope toward face, externally rotate at end. Great for posture.",
             defaultSets: 3,
             repRange: "12-15",
-            restSeconds: 45
+            restSeconds: 45,
+            youtubeVideoID: "rep-qVOkqgk"   // Athlean-X - Classic face pull video
         ),
         Exercise(
             name: "Dumbbell Bicep Curls",
@@ -105,7 +118,8 @@ enum ExerciseDatabase {
             instructions: "Hold weight at chest, squat deep while keeping torso upright.",
             defaultSets: 4,
             repRange: "8-12",
-            restSeconds: 75
+            restSeconds: 75,
+            youtubeVideoID: "MeIiIdhvXT4"   // Athlean-X - Great goblet squat demo
         ),
         Exercise(
             name: "Romanian Deadlifts",
@@ -114,7 +128,8 @@ enum ExerciseDatabase {
             instructions: "Hinge at hips with slight knee bend, feel stretch in hamstrings, drive hips forward.",
             defaultSets: 3,
             repRange: "6-10",
-            restSeconds: 90
+            restSeconds: 90,
+            youtubeVideoID: "jEy_czb3RKA"   // Athlean-X - Excellent RDL form
         ),
         Exercise(
             name: "Bulgarian Split Squats",
@@ -123,7 +138,8 @@ enum ExerciseDatabase {
             instructions: "Rear foot elevated on bench. Lower until front thigh is parallel to floor.",
             defaultSets: 3,
             repRange: "6-10 each",
-            restSeconds: 60
+            restSeconds: 60,
+            youtubeVideoID: "2C-uNgKwPLE"   // Athlean-X - Good split squat technique
         ),
         Exercise(
             name: "Walking Lunges",
@@ -162,7 +178,8 @@ enum ExerciseDatabase {
             instructions: "Forearms on ground, body straight from head to heels. Brace abs hard.",
             defaultSets: 3,
             repRange: "30-60s",
-            restSeconds: 30
+            restSeconds: 30,
+            youtubeVideoID: "ASdvN_XEl_c"   // Athlean-X - Plank done right
         ),
         Exercise(
             name: "Dead Bugs",
@@ -212,7 +229,8 @@ enum ExerciseDatabase {
             instructions: "Hinge and snap hips forward explosively. Arms are just guides for the bell.",
             defaultSets: 4,
             repRange: "12-20",
-            restSeconds: 45
+            restSeconds: 45,
+            youtubeVideoID: "YSxHifyI6sM"   // StrongFirst / good swing demo (widely recommended)
         ),
         Exercise(
             name: "Burpees",
