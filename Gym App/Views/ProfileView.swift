@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @Bindable var preferences: UserPreferences
+    @AppStorage("appLanguage") private var appLanguage: String = "en"
 
     var body: some View {
         NavigationStack {
@@ -9,6 +10,18 @@ struct ProfileView: View {
                 Section("Your Profile") {
                     TextField("Name", text: $preferences.name)
                         .textContentType(.name)
+                }
+
+                Section("Language") {
+                    Picker("App Language", selection: $appLanguage) {
+                        Text(String(localized: "English")).tag("en")
+                        Text(String(localized: "Mandarin")).tag("zh-Hans")
+                    }
+                    .pickerStyle(.menu)
+
+                    Text("Changing language will take effect after restarting the app.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
 
                 Section("Preferences") {

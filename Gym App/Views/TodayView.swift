@@ -84,7 +84,7 @@ struct TodayView: View {
                         showingWorkout = true
                     }
                 } label: {
-                    Label("Start Workout", systemImage: "play.fill")
+                    Label(String(localized: "Start Workout"), systemImage: "play.fill")
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(Color.appTint)
@@ -200,7 +200,7 @@ struct TodayView: View {
             } label: {
                 HStack {
                     Spacer()
-                    Text("Start Workout")
+                    Text(String(localized: "Start Workout"))
                         .font(.headline)
                         .foregroundStyle(.white)
                     Spacer()

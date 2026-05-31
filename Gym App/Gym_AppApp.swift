@@ -11,6 +11,7 @@ import SwiftData
 
 @main
 struct Gym_AppApp: App {
+    @AppStorage("appLanguage") private var appLanguage: String = "en"
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             WorkoutLog.self,
@@ -60,6 +61,7 @@ struct Gym_AppApp: App {
             MainTabView()
                 .modelContainer(sharedModelContainer)
                 .preferredColorScheme(.light)
+                .environment(\.locale, Locale(identifier: appLanguage))
         }
     }
 }

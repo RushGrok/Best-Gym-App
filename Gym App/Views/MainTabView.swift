@@ -10,6 +10,8 @@ struct MainTabView: View {
     @State private var userPreferences: UserPreferences?
     @State private var profileManager: ProfileManager?
 
+    @AppStorage("appLanguage") private var appLanguage: String = "en"
+
     private var effectivePreferences: UserPreferences {
         userPreferences ?? UserPreferences()
     }
@@ -18,19 +20,19 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             TodayView(preferences: effectivePreferences, recentLogs: workoutLogs)
                 .tabItem {
-                    Label("Today", systemImage: "calendar")
+                    Label(String(localized: "Today"), systemImage: "calendar")
                 }
                 .tag(Tab.today)
 
             ExercisesView()
                 .tabItem {
-                    Label("Exercises", systemImage: "list.bullet")
+                    Label(String(localized: "Exercises"), systemImage: "list.bullet")
                 }
                 .tag(Tab.exercises)
 
             HistoryView(logs: workoutLogs)
                 .tabItem {
-                    Label("History", systemImage: "clock.arrow.circlepath")
+                    Label(String(localized: "History"), systemImage: "clock.arrow.circlepath")
                 }
                 .tag(Tab.history)
 
@@ -42,7 +44,7 @@ struct MainTabView: View {
                 }
             }
             .tabItem {
-                Label("Me", systemImage: "person.crop.circle")
+                Label(String(localized: "Me"), systemImage: "person.crop.circle")
             }
             .tag(Tab.profile)
         }
@@ -52,6 +54,7 @@ struct MainTabView: View {
             // Pre-generate suggestion early so the toolbar button isn't disabled on first launch
             // (TodayView will also call it, but this helps with timing)
         }
+        .environment(\.locale, Locale(identifier: appLanguage))
     }
 
     private func ensurePreferencesExist() {
