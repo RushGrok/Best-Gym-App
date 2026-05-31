@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 // MARK: - Best Gym App Brand Colors (Deep Navy + Electric Blue)
 
@@ -13,8 +12,8 @@ extension Color {
     /// Supporting accent for CTAs, highlights
     static let brandAccent = Color(red: 0.30, green: 0.65, blue: 0.98)
 
-    /// Surface / card background in dark mode friendly way
-    static let brandSurface = Color(UIColor.secondarySystemGroupedBackground)
+    /// Surface / card background - slightly lighter than brandNavy for cards & surfaces
+    static let brandSurface = Color(red: 0.13, green: 0.16, blue: 0.24)
 }
 
 // Convenience for the old "orange" tint during transition
