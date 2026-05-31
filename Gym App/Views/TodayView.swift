@@ -53,9 +53,11 @@ struct TodayView: View {
                 .padding(.horizontal)
                 .padding(.top, 8)
             }
-            .background(Color(.systemGroupedBackground))
+            .background(Color.systemBackground)
             .navigationTitle("Today")
-            .navigationBarTitleDisplayMode(.large)
+            #if os(iOS)
+.navigationBarTitleDisplayMode(.large)
+#endif
             .onAppear(perform: generateSuggestion)
             .refreshable {
                 generateSuggestion()
@@ -87,7 +89,7 @@ struct TodayView: View {
             // Temporary profile indicator (will be replaced by real switcher)
             HStack(spacing: 6) {
                 Image(systemName: "person.crop.circle.fill")
-                    .foregroundStyle(.appTint)
+                    .foregroundStyle(Color.appTint)
                 Text("Alex Rivera")
                     .font(.callout.weight(.medium))
                     .foregroundStyle(.secondary)
@@ -103,7 +105,7 @@ struct TodayView: View {
         HStack(spacing: 16) {
             Image(systemName: "flame.fill")
                 .font(.system(size: 36))
-                .foregroundStyle(.appTint)
+                .foregroundStyle(Color.appTint)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(streak) day streak")
@@ -118,7 +120,7 @@ struct TodayView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.secondarySystemGroupedBackground))
+                .fill(Color.secondarySystemBackground)
         )
     }
 
@@ -134,8 +136,8 @@ struct TodayView: View {
                         .font(.callout.weight(.medium))
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
-                        .background(.appTint.opacity(0.15))
-                        .foregroundStyle(.appTint)
+                        .background(Color.appTint.opacity(0.15))
+                        .foregroundStyle(Color.appTint)
                         .clipShape(Capsule())
                 }
 
@@ -153,7 +155,7 @@ struct TodayView: View {
                 ForEach(workout.exercises.prefix(4)) { exercise in
                     HStack {
                         Image(systemName: iconForExercise(exercise))
-                            .foregroundStyle(.appTint)
+                            .foregroundStyle(Color.appTint)
                             .frame(width: 24)
                         Text(exercise.name)
                             .font(.callout)
@@ -188,7 +190,7 @@ struct TodayView: View {
                 .padding(.vertical, 14)
                 .background(
                     RoundedRectangle(cornerRadius: 14)
-                        .fill(.appTint)
+                        .fill(Color.appTint)
                 )
             }
             .padding(.top, 8)
@@ -196,7 +198,7 @@ struct TodayView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color(.secondarySystemGroupedBackground))
+                .fill(Color.secondarySystemBackground)
         )
     }
 
@@ -235,11 +237,13 @@ struct TodayView: View {
     }
 
     private func quickActionButton(title: String, subtitle: String, icon: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
+        Button {
+            action()
+        } label: {
             VStack(alignment: .leading, spacing: 4) {
                 Image(systemName: icon)
                     .font(.title3)
-                    .foregroundStyle(.appTint)
+                    .foregroundStyle(Color.appTint)
                 Text(title)
                     .font(.callout.weight(.semibold))
                     .foregroundStyle(.primary)
@@ -251,7 +255,7 @@ struct TodayView: View {
             .padding(12)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color(.secondarySystemGroupedBackground))
+                    .fill(Color.secondarySystemBackground)
             )
         }
     }

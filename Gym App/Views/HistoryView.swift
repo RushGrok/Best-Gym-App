@@ -40,7 +40,7 @@ struct WorkoutLogRow: View {
                         .foregroundStyle(.green)
                 } else {
                     Image(systemName: "clock.badge.exclamationmark")
-                        .foregroundStyle(.appTint)
+                        .foregroundStyle(Color.appTint)
                 }
             }
 

@@ -104,10 +104,10 @@ struct WorkoutSessionView: View {
                 VStack(alignment: .trailing) {
                     Text("REST")
                         .font(.caption.weight(.bold))
-                        .foregroundStyle(.appTint)
+                        .foregroundStyle(Color.appTint)
                     Text("\(restTimerSeconds)s")
                         .font(.system(size: 22, weight: .semibold, design: .monospaced))
-                        .foregroundStyle(.appTint)
+                        .foregroundStyle(Color.appTint)
                 }
             } else {
                 Button {
@@ -148,7 +148,7 @@ struct WorkoutSessionView: View {
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.borderedProminent)
-            .tint(.appTint)
+            .tint(Color.appTint)
         }
         .padding(.horizontal)
         .padding(.bottom, 12)
@@ -218,7 +218,7 @@ struct ExerciseLoggingRow: View {
                 } label: {
                     Image(systemName: isActive ? "chevron.down.circle.fill" : "chevron.right.circle")
                         .font(.title3)
-                        .foregroundStyle(isActive ? .appTint : .secondary)
+                        .foregroundStyle(isActive ? Color.appTint : .secondary)
                 }
             }
 

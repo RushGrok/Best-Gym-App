@@ -19,7 +19,7 @@ struct ExerciseDetailView: View {
                     VStack(spacing: 12) {
                         Image(systemName: iconForExercise(exercise))
                             .font(.system(size: 72, weight: .light))
-                            .foregroundStyle(.appTint)
+                            .foregroundStyle(Color.appTint)
 
                         Text(exercise.name)
                             .font(.largeTitle.bold())
@@ -80,7 +80,7 @@ struct ExerciseDetailView: View {
                     .padding()
                     .background(
                         RoundedRectangle(cornerRadius: 14)
-                            .fill(.appTint)
+                            .fill(Color.appTint)
                     )
                     .foregroundStyle(.white)
                 }
@@ -150,7 +150,7 @@ private struct Chip: View {
             .padding(.horizontal, 10)
             .padding(.vertical, 5)
             .background(style == .muscle ? Color.appTint.opacity(0.12) : Color.secondary.opacity(0.12))
-            .foregroundStyle(style == .muscle ? .appTint : .secondary)
+            .foregroundStyle(style == .muscle ? Color.appTint : .secondary)
             .clipShape(Capsule())
     }
 }

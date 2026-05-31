@@ -34,17 +34,19 @@ struct MainTabView: View {
                 }
                 .tag(Tab.history)
 
-            if let prefs = userPreferences {
-                ProfileView(preferences: prefs)
-            } else {
-                ProgressView()
+            Group {
+                if let prefs = userPreferences {
+                    ProfileView(preferences: prefs)
+                } else {
+                    ProgressView()
+                }
             }
             .tabItem {
                 Label("Me", systemImage: "person.crop.circle")
             }
             .tag(Tab.profile)
         }
-        .tint(.appTint)
+        .tint(Color.appTint)
         .onAppear(perform: ensurePreferencesExist)
     }
 
