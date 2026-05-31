@@ -212,6 +212,108 @@ enum ExerciseDatabase {
             restSeconds: 30
         ),
 
+        // === MOBILITY ===
+        Exercise(
+            name: "Cat-Cow",
+            muscleGroups: [.core, .back],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "On all fours, alternate between arching and rounding your back. Move slowly with your breath.",
+            defaultSets: 2,
+            repRange: "8-10 each",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "World's Greatest Stretch",
+            muscleGroups: [.fullBody],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "Lunge position, rotate torso and reach arm to sky. Great for hips, thoracic spine, and hamstrings.",
+            defaultSets: 2,
+            repRange: "5-8 each side",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "Thread the Needle",
+            muscleGroups: [.shoulders, .back],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "On all fours, slide one arm under the other and rotate. Excellent for upper back and shoulder mobility.",
+            defaultSets: 2,
+            repRange: "8-10 each side",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "90/90 Hip Stretch",
+            muscleGroups: [.glutes, .hamstrings],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "Sit with one leg in front and one to the side, both knees at 90 degrees. Hinge forward gently.",
+            defaultSets: 2,
+            repRange: "45-60s each side",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "Couch Stretch",
+            muscleGroups: [.hipFlexors, .quads],
+            equipment: [.bodyweight, .bench],
+            category: .mobility,
+            instructions: "Knee on the floor against a wall or bench, foot on the couch. Drive hips forward for deep hip flexor stretch.",
+            defaultSets: 2,
+            repRange: "45-90s each side",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "Downward Facing Dog",
+            muscleGroups: [.shoulders, .hamstrings, .calves],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "From plank, lift hips high and back. Pedal the feet or hold for a full-body stretch.",
+            defaultSets: 2,
+            repRange: "30-60s",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "Pigeon Pose",
+            muscleGroups: [.glutes, .hipFlexors],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "Bring one shin forward, extend the back leg. Sink hips for a deep glute and hip opener.",
+            defaultSets: 2,
+            repRange: "45-90s each side",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "Thoracic Rotations (Open Books)",
+            muscleGroups: [.shoulders, .back],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "Lie on your side with knees bent. Open the top arm toward the floor while keeping knees stacked.",
+            defaultSets: 2,
+            repRange: "8-12 each side",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "Child's Pose",
+            muscleGroups: [.back, .shoulders],
+            equipment: [.bodyweight],
+            category: .mobility,
+            instructions: "Kneel and sit back on heels, reach arms forward. Relax and breathe deeply into the stretch.",
+            defaultSets: 2,
+            repRange: "30-60s",
+            restSeconds: 30
+        ),
+        Exercise(
+            name: "Shoulder Dislocates",
+            muscleGroups: [.shoulders],
+            equipment: [.resistanceBands],
+            category: .mobility,
+            instructions: "Hold a band or stick with wide grip. Slowly move it from hips to overhead and behind the back.",
+            defaultSets: 3,
+            repRange: "8-12",
+            restSeconds: 30
+        ),
+
         // === FULL BODY / POWER ===
         Exercise(
             name: "Dumbbell Thrusters",

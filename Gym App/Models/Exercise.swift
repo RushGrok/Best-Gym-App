@@ -21,6 +21,7 @@ enum MuscleGroup: String, Codable, CaseIterable, Identifiable {
     case calves = "Calves"
     case adductors = "Adductors"
     case abductors = "Abductors"
+    case hipFlexors = "Hip Flexors"
     case legs = "Legs"
 
     // Other / general

@@ -65,12 +65,30 @@ struct TodayView: View {
             .sheet(isPresented: $showingWorkout) {
                 if let workout = currentWorkout {
                     WorkoutSessionView(suggestedWorkout: workout) {
-                        // After completing, refresh suggestion
                         showingWorkout = false
                         currentWorkout = nil
                         generateSuggestion()
                     }
+                } else {
+                    // Fallback UI so we never show a completely blank sheet
+                    Text("No workout selected")
+                        .foregroundStyle(.secondary)
                 }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    if let workout = suggestedWorkout {
+                        currentWorkout = workout
+                        showingWorkout = true
+                    }
+                } label: {
+                    Label("Start Workout", systemImage: "play.fill")
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(Color.appTint)
+                .disabled(suggestedWorkout == nil)
             }
         }
     }
@@ -90,7 +108,7 @@ struct TodayView: View {
             HStack(spacing: 6) {
                 Image(systemName: "person.crop.circle.fill")
                     .foregroundStyle(Color.appTint)
-                Text("Alex Rivera")
+                Text(preferences.name.isEmpty ? "Trainer" : preferences.name)
                     .font(.callout.weight(.medium))
                     .foregroundStyle(.secondary)
             }
@@ -175,7 +193,7 @@ struct TodayView: View {
             }
             .padding(.top, 4)
 
-            // Big action button
+            // Start Workout button inside the card
             Button {
                 currentWorkout = workout
                 showingWorkout = true
@@ -193,7 +211,8 @@ struct TodayView: View {
                         .fill(Color.appTint)
                 )
             }
-            .padding(.top, 8)
+            .padding(.top, 12)
+
         }
         .padding()
         .background(

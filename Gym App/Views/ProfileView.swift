@@ -6,6 +6,11 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             Form {
+                Section("Your Profile") {
+                    TextField("Name", text: $preferences.name)
+                        .textContentType(.name)
+                }
+
                 Section("Preferences") {
                     Picker("Target Workout Length", selection: $preferences.preferredDurationMinutes) {
                         Text("25 minutes").tag(25)

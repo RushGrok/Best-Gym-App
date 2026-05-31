@@ -52,6 +52,7 @@ final class WorkoutLog {
 
 @Model
 final class UserPreferences {
+    var name: String = "Trainer"
     var preferredDurationMinutes: Int
     var experienceLevelRaw: String
     var goalsRaw: [String]
@@ -61,12 +62,14 @@ final class UserPreferences {
     var hasCompletedOnboarding: Bool
 
     init(
+        name: String = "Trainer",
         preferredDurationMinutes: Int = 45,
         experienceLevel: ExperienceLevel = .intermediate,
         goals: [Goal] = [.generalFitness],
         availableEquipment: Set<Equipment> = [.bodyweight, .dumbbells, .bench],
         hasCompletedOnboarding: Bool = false
     ) {
+        self.name = name
         self.preferredDurationMinutes = preferredDurationMinutes
         self.experienceLevelRaw = experienceLevel.rawValue
         self.goalsRaw = goals.map { $0.rawValue }

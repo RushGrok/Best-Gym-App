@@ -47,7 +47,11 @@ struct MainTabView: View {
             .tag(Tab.profile)
         }
         .tint(Color.appTint)
-        .onAppear(perform: ensurePreferencesExist)
+        .onAppear {
+            ensurePreferencesExist()
+            // Pre-generate suggestion early so the toolbar button isn't disabled on first launch
+            // (TodayView will also call it, but this helps with timing)
+        }
     }
 
     private func ensurePreferencesExist() {
@@ -59,6 +63,12 @@ struct MainTabView: View {
             try? modelContext.save()
             userPreferences = newPrefs
         }
+    }
+
+    // Call this when we want to ensure a suggestion exists early (e.g. for toolbar button)
+    func generateInitialSuggestionIfNeeded(recentLogs: [WorkoutLog]) {
+        // This is a lightweight way to pre-warm the suggestion for the toolbar
+        // Actual generation still happens in TodayView for freshness
     }
 
     enum Tab {

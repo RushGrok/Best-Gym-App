@@ -15,9 +15,9 @@ extension Color {
     /// Surface / card background - slightly lighter than brandNavy for cards & surfaces
     static let brandSurface = Color(red: 0.13, green: 0.16, blue: 0.24)
 
-    // Safe system color replacements (avoids UIKit resolution issues)
-    static let systemBackground = Color(red: 0.07, green: 0.07, blue: 0.09)
-    static let secondarySystemBackground = Color(red: 0.12, green: 0.12, blue: 0.14)
+    // Light mode friendly backgrounds (since we're forcing light mode)
+    static let systemBackground = Color(red: 0.95, green: 0.95, blue: 0.97)
+    static let secondarySystemBackground = Color(red: 0.90, green: 0.90, blue: 0.93)
 }
 
 // Convenience for the old "orange" tint during transition

@@ -34,9 +34,10 @@ struct WorkoutSessionView: View {
                 // Exercise list
                 ScrollView {
                     VStack(spacing: 16) {
-                        ForEach($performedExercises) { $performed in
+                        ForEach(Array(zip($performedExercises, suggestedWorkout.exercises)), id: \.0.id) { $performed, exercise in
                             ExerciseLoggingRow(
                                 performed: $performed,
+                                exercise: exercise,
                                 isActive: activeExerciseId == performed.id,
                                 onStartRest: startRestTimer,
                                 onActivate: { activeExerciseId = performed.id }
@@ -195,9 +196,12 @@ struct WorkoutSessionView: View {
 
 struct ExerciseLoggingRow: View {
     @Binding var performed: PerformedExercise
+    let exercise: Exercise
     let isActive: Bool
     let onStartRest: (Int) -> Void
     let onActivate: () -> Void
+
+    @Environment(\.openURL) private var openURL
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -219,6 +223,13 @@ struct ExerciseLoggingRow: View {
                     Image(systemName: isActive ? "chevron.down.circle.fill" : "chevron.right.circle")
                         .font(.title3)
                         .foregroundStyle(isActive ? Color.appTint : .secondary)
+                }
+            }
+
+            // Form reference (YouTube preview) when expanded
+            if isActive, let videoID = exercise.youtubeVideoID {
+                YoutubeFormThumbnail(videoID: videoID, exerciseName: performed.exerciseName) {
+                    launchVideo(videoID: videoID)
                 }
             }
 
@@ -253,6 +264,78 @@ struct ExerciseLoggingRow: View {
             RoundedRectangle(cornerRadius: 14)
                 .stroke(isActive ? Color.appTint.opacity(0.4) : Color.clear, lineWidth: 2)
         )
+    }
+
+    private func launchVideo(videoID: String) {
+        if let url = URL(string: "https://www.youtube.com/watch?v=\(videoID)") {
+            openURL(url)
+        }
+    }
+}
+
+// Compact YouTube thumbnail preview for the logging screen
+struct YoutubeFormThumbnail: View {
+    let videoID: String
+    let exerciseName: String
+    let onTap: () -> Void
+
+    var thumbnailURL: URL? {
+        URL(string: "https://img.youtube.com/vi/\(videoID)/mqdefault.jpg")
+    }
+
+    var body: some View {
+        Button(action: onTap) {
+            HStack(spacing: 12) {
+                // Thumbnail
+                ZStack {
+                    if let url = thumbnailURL {
+                        AsyncImage(url: url) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                            case .empty, .failure:
+                                Color.secondary.opacity(0.2)
+                            @unknown default:
+                                Color.secondary.opacity(0.2)
+                            }
+                        }
+                        .frame(width: 80, height: 60)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                    } else {
+                        Color.secondary.opacity(0.2)
+                            .frame(width: 80, height: 60)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+
+                    // Play icon overlay
+                    Image(systemName: "play.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(.white)
+                        .shadow(radius: 4)
+                }
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Watch form video")
+                        .font(.callout.weight(.semibold))
+                        .foregroundStyle(Color.appTint)
+
+                    Text("Tap to see technique for \(exerciseName)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                }
+
+                Spacer()
+            }
+            .padding(8)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(.secondarySystemGroupedBackground))
+            )
+        }
+        .buttonStyle(.plain)
     }
 }
 
